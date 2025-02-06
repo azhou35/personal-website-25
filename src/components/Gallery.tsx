@@ -1,140 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Photo {
   id: number;
   src: string;
   alt: string;
-  caption?: string;
-  className?: string; // Added to control individual image sizing
+  blurHash?: string; // Optional: for blur placeholder
 }
 
 const photos: Photo[] = [
-  // Top row - 4 equal squares
   {
     id: 1,
     src: "/photos/image1.jpg",
-    alt: "Square photo 1",
-    className: "aspect-square"
+    alt: "Photo 1"
   },
   {
     id: 2,
-    src: "/photos/photo2.jpg",
-    alt: "Square photo 2",
-    className: "aspect-square"
+    src: "/photos/photo2.JPG",
+    alt: "Photo 2"
   },
   {
     id: 3,
-    src: "/photos/photo3.jpg",
-    alt: "Square photo 3",
-    className: "aspect-square"
+    src: "/photos/photo3.JPG",
+    alt: "Photo 3"
   },
   {
     id: 4,
-    src: "/photos/photo4.jpg",
-    alt: "Square photo 4",
-    className: "aspect-square"
+    src: "/photos/photo4.JPG",
+    alt: "Photo 4"
   },
-  // Middle row - small square, wide rectangle, two small squares
-  {
+
+    {
     id: 5,
-    src: "/photos/photo5.jpg",
-    alt: "Small square photo",
-    className: "aspect-square"
+    src: "/photos/photo5.JPG",
+    alt: "Photo 5"
   },
   {
     id: 6,
-    src: "/photos/photo6.jpg",
-    alt: "Wide rectangular photo",
-    className: "col-span-2 aspect-[2/1]" // Takes up 2 columns, 2:1 aspect ratio
+    src: "/photos/photo6.JPG",
+    alt: "Photo 6"
   },
   {
     id: 7,
     src: "/photos/photo7.jpg",
-    alt: "Small square photo",
-    className: "aspect-square"
+    alt: "Photo 7"
   },
+
   {
-    id: 8,
-    src: "/photos/photo8.jpg",
-    alt: "Small square photo",
-    className: "aspect-square"
+    id: 8,  
+    src: "/photos/photo8.JPG",
+    alt: "Photo 8"
   },
-  // Bottom row - 3 large rectangles
+
   {
     id: 9,
     src: "/photos/photo9.jpg",
-    alt: "Landscape photo 1",
-    className: "aspect-[4/3]" // 4:3 landscape
+    alt: "Photo 9"
   },
+
   {
     id: 10,
-    src: "/photos/photo10.jpg",
-    alt: "Portrait photo",
-    className: "aspect-[3/4]" // 3:4 portrait
+    src: "/photos/photo10.JPG",
+    alt: "Photo 10"
   },
+
   {
-    id: 11,
-    src: "/photos/photo11.jpg",
-    alt: "Landscape photo 2",
-    className: "aspect-[4/3]" // 4:3 landscape
+    id: 11,  
+    src: "/photos/photo11.JPG",
+    alt: "Photo 11"
   },
+
+  {
+    id: 12,
+    src: "/photos/photo12.jpg",
+    alt: "Photo 12"
+  }
+
 ];
 
 const Gallery = () => {
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+
   return (
-    <div className="space-y-8">
-      <h2 className="text-3xl font-serif font-medium">Photography</h2>
-      
-      {/* Top row - 4 equal squares */}
-      <div className="grid grid-cols-4 gap-4">
-        {photos.slice(0, 4).map((photo) => (
-          <div key={photo.id} className="group relative">
+    <div className="space-y-6">
+      <h2 className="font-serif text-2xl font-medium">Gallery</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {photos.map((photo) => (
+          <div 
+            key={photo.id} 
+            className="group relative aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden"
+          >
             <img
               src={photo.src}
               alt={photo.alt}
-              className={`w-full object-cover ${photo.className}`}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-opacity duration-300"
+              style={{ 
+                opacity: 0,
+                animation: 'fadeIn 0.5s ease-in forwards'
+              }}
+              onLoad={(e) => {
+                (e.target as HTMLImageElement).style.opacity = '1';
+                setImagesLoaded(prev => prev + 1);
+              }}
             />
-            {photo.caption && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-sm">{photo.caption}</p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Middle row - small square, wide rectangle, two small squares */}
-      <div className="grid grid-cols-4 gap-4">
-        {photos.slice(4, 8).map((photo) => (
-          <div key={photo.id} className={`group relative ${photo.className}`}>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="w-full h-full object-cover"
-            />
-            {photo.caption && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-sm">{photo.caption}</p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom row - 3 large rectangles */}
-      <div className="grid grid-cols-3 gap-4">
-        {photos.slice(8, 11).map((photo) => (
-          <div key={photo.id} className={`group relative ${photo.className}`}>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="w-full h-full object-cover"
-            />
-            {photo.caption && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-sm">{photo.caption}</p>
-              </div>
-            )}
           </div>
         ))}
       </div>

@@ -29,7 +29,12 @@ function App() {
       <div className="bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <nav className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50">
           <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <button onClick={() => setActiveSection('about')} className="text-2xl hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-serif font-medium">周</button>
+            <button 
+              onClick={() => setActiveSection('about')} 
+              className="text-2xl hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-serif font-medium"
+            >
+              周
+            </button>
             <div className="flex items-center gap-6">
               {navigation.map((item) => (
                 <button
@@ -61,11 +66,6 @@ function App() {
               built with 🍵
             </p>
             <div className="flex gap-4">
-            <a href="https://docs.google.com/document/d/1CpGwc2HrVs76PQ-f_HFrj984kk56NypSH3WkkKO5OZM/edit?usp=sharing" 
-                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-                 aria-label="Resume">
-                <Mail size={20} />
-              </a>
               <a href="https://github.com/sarahchen" 
                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
                  aria-label="GitHub Profile">
@@ -81,7 +81,6 @@ function App() {
                  aria-label="Email Contact">
                 <Mail size={20} />
               </a>
-           
             </div>
           </div>
         </footer>

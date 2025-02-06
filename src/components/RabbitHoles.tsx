@@ -22,18 +22,11 @@ const RabbitHoles = () => {
       url: "https://azhou35.github.io/digitalgarden/permeability-to-wonder"
     },
     {
-      title: "Large Language Models & Consciousness",
-      description: "Exploring the philosophical implications of language models and the nature of machine consciousness.",
-      tags: ["AI", "Philosophy", "Consciousness"],
-      category: "Tech",
-      url: "https://example.com/llm-consciousness"
-    },
-    {
-      title: "Digital Gardens & Personal Knowledge Management",
-      description: "How non-linear note-taking and digital gardens are changing the way we think about knowledge sharing.",
-      tags: ["PKM", "Learning", "Web"],
+      title: "social network theory",
+      description: "Overthinking social relationships.",
+      tags: ["Social"],
       category: "Culture",
-      url: "https://example.com/digital-gardens"
+      url: "https://azhou35.github.io/digitalgarden/social-network-theory"
     }
   ];
 
