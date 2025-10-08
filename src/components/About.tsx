@@ -3,26 +3,25 @@ import React from 'react';
 const About = () => {
   return (
     <div className="space-y-16">
-      <section className="space-y-6">
-        <h2 className="font-serif text-2xl font-medium">Annie Zhou.</h2>
-        <div className="space-y-0.5 text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-        <p>  searching for the humanity within technology through product, prose, and people.
-          </p>
-          
-          <p>
-            based in nyc. working on supercomputing at scale at microsoft ai. 
-            previously contributed to open source at aws and designed nlp tools for legal tech.
-</p>
-          
-          <p>
-            outside of work, i read, take pictures, and curate intentional spaces for creativity.
-          </p>
+      <section className="space-y-6 text-left pl-4">
+        <h2 className="font-serif text-3xl font-medium text-[#2c3d2c] dark:!text-white">Annie Zhou</h2>
+        
+        {/* Left-aligned Bio Text */}
+        <div className="space-y-5 max-w-[500px] text-[#2c3d2c] dark:!text-white" style={{ 
+          fontSize: '1.05rem', 
+          lineHeight: '1.7'
+        }}>
+          <p>Poking the pressure points where large systems fail. <br /> Current TPM at OpenAI. Previously at Microsoft Supercomputing.</p>
+          <p>Cultivating creative communities through photowalks, galleries, & writing clubs.</p>
+          <p>Check out my <a href="https://anniewhere.substack.com/" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>blog↗</a>, <a href="https://azhou35.github.io/my-digital-garden/" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>digital garden↗</a>, and <a href="https://curius.app/annie-zhou" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>bookmarks↗</a>.</p>
         </div>
       </section>
 
-      <section className="space-y-8">
+
+      <section className="space-y-16">
+        <div className="space-y-6 text-left pl-4">
         <h3 className="font-serif text-xl font-medium">Featured Work</h3>
-        <div className="space-y-6">
+
           {[
             {
               title: "Microsoft",
@@ -55,16 +54,6 @@ const About = () => {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="space-y-6">
-        <h3 className="font-serif text-xl font-medium">Ars Poetica</h3>
-        <div className="prose dark:prose-invert max-w-none text-sm bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg">
-          <p>
-          through writing and community building, i aim to explore how technology reshapes human connection. where are the intimate spaces where digital and emotional experiences intersect? how can we build bridges between the logical and the lyrical?
-         what remains uniquely human in an increasingly digital world?
-          </p>
         </div>
       </section>
     </div>

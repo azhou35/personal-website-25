@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface Photo {
   id: number;
@@ -78,11 +78,11 @@ const photos: Photo[] = [
 ];
 
 const Gallery = () => {
-  const [imagesLoaded, setImagesLoaded] = useState(0);
-
   return (
     <div className="space-y-6">
-      <h2 className="font-serif text-2xl font-medium">Gallery</h2>
+      <section className="space-y-6 text-left pl-4">
+        <h2 className="font-serif text-3xl font-medium">Gallery</h2>
+      </section>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {photos.map((photo) => (
           <div 
@@ -92,17 +92,7 @@ const Gallery = () => {
             <img
               src={photo.src}
               alt={photo.alt}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-opacity duration-300"
-              style={{ 
-                opacity: 0,
-                animation: 'fadeIn 0.5s ease-in forwards'
-              }}
-              onLoad={(e) => {
-                (e.target as HTMLImageElement).style.opacity = '1';
-                setImagesLoaded(prev => prev + 1);
-              }}
+              className="w-full h-full object-cover"
             />
           </div>
         ))}
@@ -111,4 +101,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery; 
+export default Gallery;

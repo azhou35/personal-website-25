@@ -1,49 +1,95 @@
-import React from 'react';
-import { BookOpen, Github, Linkedin, Mail, Moon, Sun } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import Essays from './components/Essays';
 import About from './components/About';
-import Navigation from './components/Navigation';
+import MoreAbout from './components/MoreAbout';
 import ThemeToggle from './components/ThemeToggle';
 import Gallery from './components/Gallery';
-import RabbitHoles from './components/RabbitHoles';
 
 const navigation = [
-  { name: "About", href: "about" },
+  { name: "More About Me", href: "more-about" },
   { name: "Essays", href: "essays" },
-  { name: "Gallery", href: "gallery" },
-  { name: "🕳️", href: "rabbit-holes", title: "Rabbit Holes" },
-];
+  { name: "Gallery", href: "gallery" }];
 
 function App() {
   const [isDark, setIsDark] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+
+  // Make isDark available globally
+  (window as any).isDarkMode = isDark;
 
   const toggleTheme = () => {
     setIsDark(!isDark);
     document.documentElement.classList.toggle('dark');
   };
 
+  // optional: support deep links like /#gallery or /#more-about
+  useEffect(() => {
+    const initial = window.location.hash.replace('#', '') || 'about';
+    setActiveSection(initial);
+
+    const handleHashChange = () => {
+      const section = window.location.hash.replace('#', '') || 'about';
+      setActiveSection(section);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Preload gallery images in background
+  useEffect(() => {
+    const imageUrls = [
+      '/photos/image1.jpg',
+      '/photos/photo2.JPG',
+      '/photos/photo3.JPG',
+      '/photos/photo4.JPG',
+      '/photos/photo5.JPG',
+      '/photos/photo6.JPG',
+      '/photos/photo7.jpg',
+      '/photos/photo8.JPG',
+      '/photos/photo9.jpg',
+      '/photos/photo10.JPG',
+      '/photos/photo11.JPG',
+      '/photos/photo12.jpg'
+    ];
+    
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, []);
+
+  const goto = (section: string) => {
+    setActiveSection(section);
+    window.location.hash = section;
+  };
+
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
-      <div className="bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-300">
-        <nav className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50">
-          <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <button 
-              onClick={() => setActiveSection('about')} 
-              className="text-2xl hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-serif font-medium"
+      <div className="min-h-screen transition-colors duration-300" style={{ 
+        backgroundColor: isDark ? '#000000' : '#fbf9f5', 
+        color: isDark ? '#ffffff' : '#2c3d2c' 
+      }}>
+        {/* ===== NAVIGATION ===== */}
+        <nav className="fixed w-full backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50" style={{ backgroundColor: isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(251, 249, 245, 0.8)' }}>
+          <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            {/* Chinese character links to "About" */}
+            <button
+              onClick={() => goto('about')}
+              className={`text-2xl font-serif font-medium transition-colors pl-4`}
+              style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
             >
               周
             </button>
+
             <div className="flex items-center gap-6">
               {navigation.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => setActiveSection(item.href)}
+                  onClick={() => goto(item.href)}
                   title={item.title}
-                  className={`text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
-                    activeSection === item.href ? "text-blue-600 dark:text-blue-400" : ""
-                  }`}
+                  className={`text-sm transition-colors`}
+                  style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
                 >
                   {item.name}
                 </button>
@@ -53,32 +99,38 @@ function App() {
           </div>
         </nav>
 
-        <main className="max-w-4xl mx-auto px-6 pt-24 pb-16">
+        {/* ===== MAIN CONTENT ===== */}
+        <main className="max-w-4xl mx-auto px-4 pt-32 pb-16">
           {activeSection === 'about' && <About />}
+          {activeSection === 'more-about' && <MoreAbout />}
           {activeSection === 'essays' && <Essays />}
-          {activeSection === 'rabbit-holes' && <RabbitHoles />}
           {activeSection === 'gallery' && <Gallery />}
         </main>
 
+        {/* ===== FOOTER ===== */}
         <footer className="border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-4xl mx-auto px-6 py-8 flex justify-between items-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              built with 🍵
-            </p>
+          <div className="max-w-4xl mx-auto px-4 py-8 flex justify-between items-center">
+            <p className="text-sm text-gray-600 dark:text-gray-400">built with 🍵</p>
             <div className="flex gap-4">
-              <a href="https://github.com/sarahchen" 
-                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-                 aria-label="GitHub Profile">
+              <a
+                href="https://github.com/azhou35"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+                aria-label="GitHub Profile"
+              >
                 <Github size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/annie-zhouuuu/" 
-                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-                 aria-label="LinkedIn Profile">
+              <a
+                href="https://www.linkedin.com/in/annie-zhouuuu/"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+                aria-label="LinkedIn Profile"
+              >
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:anniezhou35@gmail.com" 
-                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-                 aria-label="Email Contact">
+              <a
+                href="mailto:anniezhou35@gmail.com"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+                aria-label="Email Contact"
+              >
                 <Mail size={20} />
               </a>
             </div>
