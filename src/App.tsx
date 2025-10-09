@@ -114,6 +114,8 @@ function App() {
             <div className="flex gap-4">
               <a
                 href="https://github.com/azhou35"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
                 aria-label="GitHub Profile"
               >
@@ -121,6 +123,8 @@ function App() {
               </a>
               <a
                 href="https://www.linkedin.com/in/annie-zhouuuu/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
                 aria-label="LinkedIn Profile"
               >
