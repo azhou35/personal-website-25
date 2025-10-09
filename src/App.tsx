@@ -7,8 +7,8 @@ import ThemeToggle from './components/ThemeToggle';
 import Gallery from './components/Gallery';
 
 const navigation = [
-  { name: "More About Me", href: "more-about" },
-  { name: "Essays", href: "essays" },
+  { name: "About", href: "more-about" },
+  { name: "Field Notes", href: "essays" },
   { name: "Gallery", href: "gallery" }];
 
 function App() {

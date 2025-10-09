@@ -13,7 +13,7 @@ const About = () => {
         }}>
           <p>Poking the pressure points where large systems fail. <br /> Current TPM at OpenAI. Previously at Microsoft Supercomputing.</p>
           <p>Cultivating creative communities through photowalks, galleries, & writing clubs.</p>
-          <p>Check out my <a href="https://anniewhere.substack.com/" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>blog↗</a>, <a href="https://azhou35.github.io/my-digital-garden/" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>digital garden↗</a>, and <a href="https://curius.app/annie-zhou" style={{ textDecoration: 'underline', color: '#9a6f4e' }}>bookmarks↗</a>.</p>
+          <p>Check out my <a href="https://anniewhere.substack.com/" target="_blank" rel="noopener noreferrer" className="group relative inline-block transition-all duration-200 hover:underline" style={{ color: 'inherit' }}><span className="group-hover:text-[#9a6f4e] transition-colors duration-200">blog↗</span></a>, <a href="https://azhou35.github.io/my-digital-garden/" target="_blank" rel="noopener noreferrer" className="group relative inline-block transition-all duration-200 hover:underline" style={{ color: 'inherit' }}><span className="group-hover:text-[#9a6f4e] transition-colors duration-200">digital garden↗</span></a>, and <a href="https://curius.app/annie-zhou" target="_blank" rel="noopener noreferrer" className="group relative inline-block transition-all duration-200 hover:underline" style={{ color: 'inherit' }}><span className="group-hover:text-[#9a6f4e] transition-colors duration-200">bookmarks↗</span></a>.</p>
         </div>
       </section>
 

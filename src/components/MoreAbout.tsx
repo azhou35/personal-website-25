@@ -11,7 +11,7 @@ const MoreAbout = () => {
           {/* Profile Image - 40% */}
           <div className="w-full md:w-2/5">
             <img 
-              src="/headshot2.JPG" 
+              src="/headshot.JPG" 
               alt="Annie Zhou" 
               className="w-full h-auto rounded-lg shadow-md"
             />
@@ -31,7 +31,7 @@ const MoreAbout = () => {
       </section>
 
       <section className="pl-4">
-        <h3 className="font-serif text-xl font-medium mb-6">Outside of Work</h3>
+        <h3 className="font-serif text-xl font-medium mb-6">On Small Joys</h3>
         <div className="flex flex-col md:flex-row gap-8 items-start">
           {/* Text Content - 50% */}
           <div className="w-full md:w-1/2 space-y-4 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
