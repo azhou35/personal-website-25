@@ -36,7 +36,7 @@ const MoreAbout = () => {
           {/* Text Content - 50% */}
           <div className="w-full md:w-1/2 space-y-4 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
             <p>I live for morning coffees, impromptu photo walks, & riverside runs; for ampersands & oxford commas; for muji pens & midori notebooks. 
-              I'm inspired by episodes of Dialectic, essays by Henrik Karlsson, photos by Faizal Westcott, poems by Ada Limón, film theories by Thomas Flight.           <br/>  <br /> I am equally fascinated and terrified by the ocean.
+              I'm inspired by episodes of Dialectic, essays by Henrik Karlsson, photos by Faizal Westcott, poems by Ada Limón, film theories by Thomas Flight.           <br/>  <br /> Forever chasing wonder, wherever it goes.
             </p>
           </div>
 
