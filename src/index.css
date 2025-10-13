@@ -6,18 +6,18 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Newsreader', serif;
-  }
+html {
+  font-family: 'Newsreader', serif;
+}
   
   .font-serif {
     font-family: 'Newsreader', serif;
   }
   
   /* Use sans-serif for navigation and headings */
-  nav, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Zalando Sans', 'Inter', system-ui, sans-serif;
-  }
+nav, h1, h2, h3, h4, h5, h6 { 
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+}
 }
 
 .dark {

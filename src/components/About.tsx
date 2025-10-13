@@ -46,7 +46,7 @@ const About = () => {
           ].map((project) => (
             <div key={project.title} className="group">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex items-baseline gap-2">
                   <h4 className="font-serif text-lg font-medium">{project.title}</h4>
                   <span className="text-sm text-gray-600 dark:text-gray-400">• {project.role}</span>
                 </div>
