@@ -1,144 +1,101 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
 
 interface Essay {
   title: string;
-  type: string;
-  year: string;
   url: string;
+  year: string;
+  type: string;
+  isNew?: boolean;
 }
 
-const Essays = () => {
-  const essays: Essay[] = [
-    {
-      title: "equilibrium",
-      type: "Prose",
-      year: "2024",
-      url: "https://substack.com/@anniewhere/p-153911638"
-    },
-    {
-      title: "to love with abandon",
-      type: "Prose",
-      year: "2024",
-      url: "https://anniewhere.substack.com/p/to-love-without-expectation?utm_source=profile&utm_medium=reader2"
-    },
-    {
-      title: "lost in translation",
-      type: "Prose",
-      year: "2024",
-      url: "https://anniewhere.substack.com/p/lost-in-translation?utm_source=profile&utm_medium=reader2"
-    },
-    {
-      title: "Together AI",
-      type: "Strategy",
-      year: "2023",
-      url: "https://research.contrary.com/company/together-ai"
-    },
-    {
-      title: "Monte Carlo",
-      type: "Strategy",
-      year: "2023",
-      url: "https://research.contrary.com/company/monte-carlo"
-    },
-    {
-      title: "AWS Machine Learning Tutorials",
-      type: "Technical",
-      year: "2022",
-      url: "https://aws.amazon.com/machine-learning/tutorials"
-    },
-    {
-      title: "eulogy at the dinner table",
-      type: "Prose",
-      year: "2023",
-      url: "https://www.rainydaymagazine.org/archive/fall-2023"
-    }
-  ];
+const essays: Essay[] = [
+  { title: "sometimes you leave, sometimes you stay", year: "2026", type: "Prose", url: "https://anniewhere.substack.com/p/on-alignment", isNew: true },
+  { title: "how to be bored", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/how-to-be-bored" },
+  { title: "object permanence", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/object-permanence" },
+  { title: "lost-time memory", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/lost-time-memory" },
+  { title: "summertime sadness", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/summertime-friendship" },
+  { title: "degrees of freedom", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/degrees-of-freedom" },
+  { title: "entryways", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/entryways" },
+  { title: "ambient co-presence", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/ambient-co-presence" },
+  { title: "friction as a fruitful endeavor", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/friction-as-a-fruitful-endeavor" },
+  { title: "tell me what you taste", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/tell-me-what-you-taste" },
+  { title: "attention is all u need", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/attention-is-all-u-need" },
+  { title: "there will come spring rains", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/there-will-come-spring-rains" },
+  { title: "digital & physical bids for connection", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/random-walks-01-digital-and-physical" },
+  { title: "field notes on 23", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/field-notes-on-23" },
+  { title: "flushing food courts & facades", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/flushing-and-facades" },
+  { title: "phantom race", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/phantom-race" },
+  { title: "chasing light", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/chasing-light" },
+  { title: "equilibrium", year: "2025", type: "Prose", url: "https://anniewhere.substack.com/p/equilibrium" },
+  { title: "beekeeper", year: "2024", type: "Prose", url: "https://anniewhere.substack.com/p/beekeeper" },
+  { title: "create-tober", year: "2024", type: "Prose", url: "https://anniewhere.substack.com/p/01-create-tober" },
+  { title: "mid-autumn wind", year: "2024", type: "Prose", url: "https://anniewhere.substack.com/p/mid-autumn-wind" },
+  { title: "model childhood", year: "2024", type: "Prose", url: "https://anniewhere.substack.com/p/model-childhood" },
+  { title: "Sweet, Savory, and In Between", year: "2025", type: "Prose", url: "https://www.offmenumag.com/specials/lai-rai-sweet-savory-and-in-between" },
+  { title: "Together AI", year: "2023", type: "Strategy", url: "https://research.contrary.com/company/together-ai" },
+  { title: "Monte Carlo", year: "2023", type: "Strategy", url: "https://research.contrary.com/company/monte-carlo" },
+  { title: "AWS Machine Learning Tutorials", year: "2022", type: "Technical", url: "https://aws.amazon.com/machine-learning/tutorials" },
+];
 
+// Group by year
+const grouped = essays.reduce<Record<string, Essay[]>>((acc, essay) => {
+  if (!acc[essay.year]) acc[essay.year] = [];
+  acc[essay.year].push(essay);
+  return acc;
+}, {});
+
+const sortedYears = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
+
+const Essays = () => {
   return (
     <div className="space-y-8">
-      <section className="space-y-6 text-left pl-4">
-        <h2 className="font-serif text-3xl font-medium dark:!text-white">Essays</h2>
-        <p className="text-base text-gray-600 dark:!text-white leading-relaxed max-w-2xl">
+      <section className="text-left pl-4">
+        <h2 className="font-serif text-3xl font-medium dark:!text-white">Field Notes</h2>
+        <p className="text-base text-gray-600 dark:!text-white leading-relaxed max-w-2xl mt-4">
           Entryway into my mindspace as I explore identity, the future of technology, and the language within it all.
         </p>
       </section>
 
-      {/* Desktop Table */}
-      <div className="hidden md:block overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead className="sticky top-0 bg-[#fbf9f5] dark:bg-gray-900">
-            <tr className="border-b-2 border-gray-300 dark:border-gray-700">
-              <th scope="col" className="text-left py-4 px-6 font-semibold text-sm dark:!text-white">Title</th>
-              <th scope="col" className="text-left py-4 px-6 font-semibold text-sm dark:!text-white">Type</th>
-              <th scope="col" className="text-left py-4 px-6 font-semibold text-sm dark:!text-white">Link</th>
-              <th scope="col" className="text-left py-4 px-6 font-semibold text-sm min-w-[200px] dark:!text-white">Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            {essays.map((essay, idx) => (
-              <tr 
-                key={essay.title}
-                className="border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
-                style={{ minHeight: '64px' }}
-              >
-                <td className="py-4 px-6">
-                  <span className="font-serif line-clamp-2 dark:!text-white" title={essay.title}>
-                    {essay.title}
-                  </span>
-                </td>
-                <td className="py-4 px-6 text-gray-600 dark:!text-white">
-                  {essay.type}
-                </td>
-                <td className="py-4 px-6">
-                  <a
-                    href={essay.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 hover:underline focus:outline-2 focus:outline-offset-2 focus:outline-gray-900 dark:focus:outline-gray-100 rounded dark:!text-white"
-                    aria-label={`Read ${essay.title}`}
-                  >
-                    <ExternalLink size={16} aria-hidden="true" />
-                  </a>
-                </td>
-                <td className="py-4 px-6 text-gray-600 dark:!text-white whitespace-nowrap">
-                  {essay.year}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Mobile Cards */}
-      <div className="md:hidden space-y-4">
-        {essays.map((essay) => (
-          <div
-            key={essay.title}
-            className="border border-gray-200 dark:border-gray-800 rounded-lg p-4 space-y-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="font-serif text-lg font-medium line-clamp-3" title={essay.title}>
-                {essay.title}
-              </h3>
+      <div className="border-t border-gray-200 dark:border-gray-700">
+        {sortedYears.map((year) => (
+          <React.Fragment key={year}>
+            {grouped[year].map((essay, idx) => (
               <a
+                key={essay.title}
                 href={essay.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded focus:outline-2 focus:outline-offset-2 focus:outline-gray-900 dark:focus:outline-gray-100"
-                aria-label={`Read ${essay.title}`}
+                className="grid border-b border-gray-100 dark:border-gray-800 py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors"
+                style={{
+                  gridTemplateColumns: '80px 1fr auto',
+                  alignItems: 'center',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
               >
-                <ExternalLink size={18} aria-hidden="true" />
+                <span
+                  className="text-gray-400 dark:text-gray-500 text-sm"
+                  style={{ fontVariantNumeric: 'tabular-nums' }}
+                >
+                  {idx === 0 ? year : ''}
+                </span>
+                <span className="font-serif text-lg">
+                  {essay.title}
+                  {essay.isNew && (
+                    <span
+                      className="ml-3 text-sm italic"
+                      style={{ color: '#ff69b4' }}
+                    >
+                      New
+                    </span>
+                  )}
+                </span>
+                <span className="text-gray-400 dark:text-gray-500 text-sm text-right">
+                  {essay.type}
+                </span>
               </a>
-            </div>
-            <div className="flex gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <div>
-                <span className="font-medium">Type:</span> {essay.type}
-              </div>
-              <div>
-                <span className="font-medium">Year:</span> {essay.year}
-              </div>
-            </div>
-          </div>
+            ))}
+          </React.Fragment>
         ))}
       </div>
     </div>

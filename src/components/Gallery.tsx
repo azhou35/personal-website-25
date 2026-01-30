@@ -1,102 +1,94 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-interface Photo {
+const CHANNEL_SLUG = 'gallery-avsv2uhgixa';
+const PER_PAGE = 100;
+
+interface ArenaBlock {
   id: number;
-  src: string;
-  alt: string;
-  blurHash?: string; // Optional: for blur placeholder
+  title: string;
+  class: string;
+  image?: {
+    display: { url: string };
+    original: { url: string };
+  };
 }
 
-const photos: Photo[] = [
-  {
-    id: 1,
-    src: "/photos/image1.jpg",
-    alt: "Photo 1"
-  },
-  {
-    id: 2,
-    src: "/photos/photo2.JPG",
-    alt: "Photo 2"
-  },
-  {
-    id: 3,
-    src: "/photos/photo3.JPG",
-    alt: "Photo 3"
-  },
-  {
-    id: 4,
-    src: "/photos/photo4.JPG",
-    alt: "Photo 4"
-  },
-
-    {
-    id: 5,
-    src: "/photos/photo5.JPG",
-    alt: "Photo 5"
-  },
-  {
-    id: 6,
-    src: "/photos/photo6.JPG",
-    alt: "Photo 6"
-  },
-  {
-    id: 7,
-    src: "/photos/photo7.jpg",
-    alt: "Photo 7"
-  },
-
-  {
-    id: 8,  
-    src: "/photos/photo8.JPG",
-    alt: "Photo 8"
-  },
-
-  {
-    id: 9,
-    src: "/photos/photo9.jpg",
-    alt: "Photo 9"
-  },
-
-  {
-    id: 10,
-    src: "/photos/photo10.JPG",
-    alt: "Photo 10"
-  },
-
-  {
-    id: 11,  
-    src: "/photos/photo11.JPG",
-    alt: "Photo 11"
-  },
-
-  {
-    id: 12,
-    src: "/photos/photo12.jpg",
-    alt: "Photo 12"
-  }
-
-];
-
 const Gallery = () => {
+  const [images, setImages] = useState<ArenaBlock[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchAll() {
+      let page = 1;
+      let all: ArenaBlock[] = [];
+      try {
+        while (true) {
+          const res = await fetch(
+            `https://api.are.na/v2/channels/${CHANNEL_SLUG}/contents?page=${page}&per=${PER_PAGE}`
+          );
+          const data = await res.json();
+          const contents = data.contents || [];
+          if (contents.length === 0) break;
+          const blocks = contents.filter(
+            (b: ArenaBlock) => b.class === 'Image' && b.image
+          );
+          all = all.concat(blocks);
+          if (contents.length < PER_PAGE) break;
+          page++;
+        }
+      } catch (e) {
+        // silently fail
+      }
+      setImages(all);
+      setLoading(false);
+    }
+    fetchAll();
+  }, []);
+
+  const isDark = (window as any).isDarkMode;
+
   return (
     <div className="space-y-6">
       <section className="space-y-6 text-left pl-4">
         <h2 className="font-serif text-3xl font-medium">Gallery</h2>
       </section>
+
+      {loading && (
+        <p className="text-sm text-gray-400 pl-4">Loading...</p>
+      )}
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {photos.map((photo) => (
-          <div 
-            key={photo.id} 
-            className="group relative aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden"
+        {images.map((block) => (
+          <div
+            key={block.id}
+            className="group relative aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden cursor-pointer"
+            onClick={() => setLightbox(block.image!.original.url)}
           >
             <img
-              src={photo.src}
-              alt={photo.alt}
-              className="w-full h-full object-cover"
+              src={block.image!.display.url}
+              alt={block.title || ''}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         ))}
       </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center cursor-pointer"
+          style={{ backgroundColor: isDark ? 'rgba(0,0,0,0.95)' : 'rgba(251,249,245,0.97)' }}
+          onClick={() => setLightbox(null)}
+        >
+          <img
+            src={lightbox}
+            alt=""
+            className="max-w-[85vw] max-h-[85vh] object-contain"
+            style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}
+          />
+        </div>
+      )}
     </div>
   );
 };

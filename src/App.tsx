@@ -5,11 +5,13 @@ import About from './components/About';
 import MoreAbout from './components/MoreAbout';
 import ThemeToggle from './components/ThemeToggle';
 import Gallery from './components/Gallery';
+import Inspiration from './components/Inspiration';
 
 const navigation = [
   { name: "About", href: "more-about" },
   { name: "Field Notes", href: "essays" },
-  { name: "Gallery", href: "gallery" }];
+  { name: "Gallery", href: "gallery" },
+  { name: "Inspiration", href: "inspiration" }];
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -71,12 +73,13 @@ function App() {
         color: isDark ? '#ffffff' : '#2c3d2c' 
       }}>
         {/* ===== NAVIGATION ===== */}
-        <nav className="fixed w-full backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50" style={{ backgroundColor: isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(251, 249, 245, 0.8)' }}>
+        <nav className="fixed w-full backdrop-blur-sm border-b border-transparent z-50" style={{ backgroundColor: isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(251, 249, 245, 0.95)' }}>
           <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             {/* Chinese character links to "About" */}
             <button
               onClick={() => goto('about')}
               className={`text-2xl font-serif font-medium transition-colors pl-4`}
+              style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
               style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
             >
               周
@@ -89,12 +92,11 @@ function App() {
                   onClick={() => goto(item.href)}
                   title={item.title}
                   className={`text-sm transition-colors`}
-                  style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
+                  style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", color: isDark ? '#ffffff' : '#2c3d2c', letterSpacing: '0.02em' }}
                 >
                   {item.name}
                 </button>
               ))}
-              <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
             </div>
           </div>
         </nav>
@@ -105,6 +107,7 @@ function App() {
           {activeSection === 'more-about' && <MoreAbout />}
           {activeSection === 'essays' && <Essays />}
           {activeSection === 'gallery' && <Gallery />}
+          {activeSection === 'inspiration' && <Inspiration />}
         </main>
 
         {/* ===== FOOTER ===== */}

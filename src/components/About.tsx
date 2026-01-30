@@ -24,6 +24,11 @@ const About = () => {
 
           {[
             {
+              title: "OpenAI",
+              description: "Scaling compute and driving reliability across GPU training infrastructure.",
+              role: "Technical Program Manager"
+            },
+            {
               title: "Microsoft",
               description: "Defined operational excellence for AI supercomputing, developed end-to-end copilot for HPC researchers.",
               role: "Technical Product Manager"
@@ -33,12 +38,7 @@ const About = () => {
               description: "Documented NLP & Gaming tools for developers and authored machine learning tutorials for non-technical audiences.",
               role: "Technical Writer"
             },
-            {
-              title: "Zing",
-              description: "Birthed study-buddy matching platform developed for Cornell's Learning Strategy Center.",
-              role: "Product Manager"
-            },
-            {
+{
               title: "Trusli",
               description: "Designed and launched a platform for AI-powered contract management.",
               role: "1st Product Manager"
