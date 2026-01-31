@@ -19,13 +19,15 @@ const MoreAbout = () => {
 
           {/* Text Content - 50% */}
           <div className="w-full md:w-1/2 space-y-4 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-            <p>I spend my days making the invisible legible, tracing the patterns that shape how progress, both physical and digital, takes form.</p>
-            
-            <p>My work sits at the intersection of systems and storytelling. At Microsoft, I helped orchestrate one of the world's largest GPU fleets. I'm deeply commited to democratizing access to tech: I started my career developing AI learning materials and contributing to open-source for NLP tools.</p>
-            
-            <p>Outside of work, I write techno-social essays and curate creative spaces through <a href="https://www.waywardnyc.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Wayward↗</a>, a project exploring how we create meaning, memory, and art in an increasingly digital world.</p>
-            
-            <p>Through everything, I aspire to build bridges between the logical and the lyrical. I'm energized by friends who share a sense of genorosity, are curious and intentional, and true to who they are. If anything here resonates, I'd love to noodle on what you're building, writing, or thinking about!</p>
+            <p>I grew up in Jersey, spent time in upstate New York, and now split my time between NYC and SF. I'm drawn to cities, systems, and the people and processes that keep them alive.</p>
+
+            <p>My earliest memories exist within games (Pokemon and Maplestory were early obsessions) and I first got into GPUs working on Amazon's GameLift team. Today, I work at OpenAI on scaling operations and maintaining the health of an ever-growing compute fleet. Previously, I drove hardware health work for one of the world's largest supercomputers at Azure.</p>
+
+            <p>I'm a techno-optimist who cares about making technology accessible for people of all backgrounds. In undergrad, I wrote learning materials for AI4ALL and contributed to open-source NLP tools.</p>
+
+            <p>Outside of work, I over-think on how to cultivate creative spaces through <a href="https://www.waywardnyc.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Wayward↗</a>, a project exploring how we create meaning, sustain memory, and share art with our neighbors.</p>
+
+            <p>I'm energized by those who share a sense of generosity, are curious and intentional, and true to who they are.</p>
           </div>
         </div>
       </section>
@@ -36,7 +38,7 @@ const MoreAbout = () => {
           {/* Text Content - 50% */}
           <div className="w-full md:w-1/2 space-y-4 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
             <p>I live for morning coffees, impromptu photo walks, & riverside runs; for ampersands & oxford commas; for muji pens & midori notebooks. 
-              I'm inspired by episodes of Dialectic, essays by Henrik Karlsson, photos by Faizal Westcott, poems by Ada Limón, film theories by Thomas Flight.           <br/>  <br /> Forever chasing wonder, wherever it goes.
+              I'm inspired by episodes of Dialectic, essays by Henrik Karlsson, photos by Faizal Westcott, poems by Ada Limón, film theories by Thomas Flight.
             </p>
           </div>
 

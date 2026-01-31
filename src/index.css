@@ -23,3 +23,15 @@ nav, h1, h2, h3, h4, h5, h6 {
 .dark {
   color-scheme: dark;
 }
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.nav-wobble:hover {
+  animation: wobble 0.4s ease-in-out;
+}

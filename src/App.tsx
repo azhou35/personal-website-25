@@ -78,7 +78,7 @@ function App() {
             {/* Chinese character links to "About" */}
             <button
               onClick={() => goto('about')}
-              className={`text-2xl font-serif font-medium transition-colors pl-4`}
+              className={`text-2xl font-serif font-medium transition-colors pl-4 nav-wobble`}
               style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
               style={{ color: isDark ? '#ffffff' : '#2c3d2c' }}
             >
@@ -91,7 +91,7 @@ function App() {
                   key={item.href}
                   onClick={() => goto(item.href)}
                   title={item.title}
-                  className={`text-sm transition-colors`}
+                  className={`text-sm transition-colors nav-wobble`}
                   style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", color: isDark ? '#ffffff' : '#2c3d2c', letterSpacing: '0.02em' }}
                 >
                   {item.name}
@@ -113,8 +113,8 @@ function App() {
         {/* ===== FOOTER ===== */}
         <footer className="border-t border-gray-200 dark:border-gray-800">
           <div className="max-w-4xl mx-auto px-4 py-8 flex justify-between items-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400">built with 🍵</p>
-            <div className="flex gap-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4">built with 🍵</p>
+            <div className="flex gap-4 pr-4">
               <a
                 href="https://github.com/azhou35"
                 target="_blank"

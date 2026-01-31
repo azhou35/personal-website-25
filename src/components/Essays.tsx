@@ -51,9 +51,6 @@ const Essays = () => {
     <div className="space-y-8">
       <section className="text-left pl-4">
         <h2 className="font-serif text-3xl font-medium dark:!text-white">Field Notes</h2>
-        <p className="text-base text-gray-600 dark:!text-white leading-relaxed max-w-2xl mt-4">
-          Entryway into my mindspace as I explore identity, the future of technology, and the language within it all.
-        </p>
       </section>
 
       <div className="border-t border-gray-200 dark:border-gray-700">
